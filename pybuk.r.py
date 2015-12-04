@@ -1,5 +1,11 @@
 import urwid
-text = urwid.Text('Hello World')
-fill = urwid.Filler(text, 'top')
-loop = urwid.MainLoop(fill)
+
+
+def show_or_exit(key):
+	if key in ('q', 'Q'):
+		raise urwid.ExitMainLoop()
+
+txt = urwid.Text("Hello World")
+fill = urwid.Filler(txt, 'top')
+loop = urwid.MainLoop(fill, unhandled_input=show_or_exit)
 loop.run()
