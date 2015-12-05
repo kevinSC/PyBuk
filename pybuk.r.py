@@ -1,32 +1,35 @@
 import urwid
 
 
-def question():
-    return urwid.Pile([urwid.Edit(('I say', u"What is your name?\n"))])
+choices = 'Chapman Cleese Gilliam Idle Jones Palin Kevin'.split()
 
 
-def answer(name):
-    return urwid.Text(('I say', u"Nice to meet you, " + name + "\n"))
+def menu(title, choices):
+    body = [urwid.Text(title), urwid.Divider()]
+    for c in choices:
+        button = urwid.Button(c)
+        urwid.connect_signal(button, 'click', item_chosen, c)
+        body.append(urwid.AttrMap(button, None, focus_map='reversed'))
+    return urwid.ListBox(urwid.SimpleFocusListWalker(body))
 
 
-class ConversationListBox(urwid.ListBox):
-    def __init__(self):
-        body = urwid.SimpleFocusListWalker([question()])
-        super(ConversationListBox, self).__init__(body)
+def item_chosen(button, choice):
+    response = urwid.Text([u'You chose ', choice, u'\n'])
+    done = urwid.Button(u'Ok')
+    urwid.connect_signal(done, 'click', exit_program)
+    main.original_widget = urwid.Filler(urwid.Pile([
+        response,
+        urwid.AttrMap(done, None, focus_map='reversed')]))
 
-    def keypress(self, size, key):
-        key = super(ConversationListBox, self).keypress(size, key)
-        if key != 'enter':
-            return key
-        name = self.focus[0].edit_text
-        if not name:
-            raise urwid.ExitMainLoop()
-        # replace or add response
-        self.focus.contents[1:] = [(answer(name), self.focus.options())]
-        pos = self.focus_position
-        # add a new question
-        self.body.insert(pos + 1, question())
-        self.focus_position = pos + 1
 
-palette = [('I say', 'default,bold', 'default')]
-urwid.MainLoop(ConversationListBox(), palette).run()
+def exit_program(button):
+    raise urwid.ExitMainLoop()
+
+main = urwid.Padding(menu(u'Pythons', choices), left=2, right=2)
+top = urwid.Overlay(
+    main,
+    urwid.SolidFill(u'\N{MEDIUM SHADE}'),
+    align='center', width=('relative', 60),
+    valign='middle', height=('relative', 60),
+    min_width=20, min_height=9)
+urwid.MainLoop(top, palette=[('reversed', 'standout', '')]).run()
