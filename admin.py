@@ -47,3 +47,22 @@ def cambiarLogin(ID, login, U):
     data = list(U[ID])
     data[2] = input('ingrese login nuevo:\n')
     U[ID] = tuple(data)
+
+
+def cambiarPassword(ID, password, U):
+    '''
+    (int, str, dict) -> (None)
+    Sinopsis:
+        Permite cambiar la clave del usuario con identificaion ID perteneciente a la estructura de datos de usuarios
+        administradores al valor pasado como argumento la nueva clave en el parámetro password cuando
+        la función es invocada.
+    Entradas:
+        - ID: Identificacion del usuario administrador.
+        - password: Valor de la nueva clave que tendrá el usuario.
+        - U: Estructura que tiene almacenada la información de usuarios con capacidades de administracion.
+    Retorna:
+        Ninguno
+    '''
+    data = list(U[ID])
+    data[3] = input('ingrese password nuevo:\n')
+    U[ID] = tuple(data)
