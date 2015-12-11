@@ -29,3 +29,21 @@ def verDatosUsuario(ID, usuarios):
     '''
     if ID in usuarios:
         print(usuarios[ID])
+
+
+def cambiarLogin(ID, login, U):
+    '''
+        (int, str, dict) -> (None)
+        Sinopsis:
+            Permite cambiar el login del usuario con identificacion ID perteneciente a la estructura de datos de usuarios
+            administradores U, al valor pasado como argumento en el parámetro login cuando la función es invocada.
+        Entradas:
+            - ID: Identificacion del usuario administrador.
+            - login: Valor del nuevo login.
+            - U: Estructura que tiene almacenada la información de usuarios con capacidades de administracion.
+        Retorna:
+            Ninguno
+    '''
+    data = list(U[ID])
+    data[2] = input('ingrese login nuevo:\n')
+    U[ID] = tuple(data)
