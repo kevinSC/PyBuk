@@ -66,3 +66,35 @@ def cambiarPassword(ID, password, U):
     data = list(U[ID])
     data[3] = input('ingrese password nuevo:\n')
     U[ID] = tuple(data)
+
+
+def libroDisponible(ISBN, DB):
+    '''
+    (str, dict) -> (Bool)
+    Sinopsis:
+        Función que verifica si la ISBN del libro está disponible dentro de la base de datos de la biblioteca.
+    Entradas:
+        - ISBN: ISBN del libro que se esta buscando
+        - DB: Estructura que tiene almacenada la información de los libros de la biblioteca.
+    Retorna:
+        Función que verifica si la ISBN del libro está disponible dentro de la base de datos de la biblioteca.
+    '''
+    return ISBN in DB
+
+def testlibroDisponible():
+    Libros = {
+                '9702604486': [' Introduccion al analisis de circuitos', 'Robert L. Boylestad', '2011'], 
+                '978970686544': ['Calculo diferencial e integral', 'James Stewart', '2007'], 
+                '9586001148': ['Algebra y trigonometria', 'Dennis G. Zill, Jacqueline M. Dewar', '1992'], 
+                '9789504926979': ['Caballo de guerra', 'Michael Morpurgo', '2012'], 
+                '9786071507150': ['Precalculo con avances de calculo', 'Dennis G. Zill, Jacqueline M. Dewar', '2012']
+             }
+
+
+    print("Test 1. Buscando material que esta disponible...")
+    print(libroDisponible('9786071507150',Libros))
+    print("Test 2. Buscando material que no esta disponible...")
+    print(libroDisponible('10092',Libros))
+
+# Test de la funcion
+testlibroDisponible() # Comente esta linea una vez verifique que la salida del programa coincide con la salida esperada a continuacion
