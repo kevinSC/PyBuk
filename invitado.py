@@ -44,4 +44,76 @@ def guardarLibros(filename, dic):
     for key, value in dic.items():
         data.write(key + ' - ' + value[0] + ' - ' + value[1] + ' - ' + value[2] + '\n')
     data.close()
-guardarLibros('sdffddfs', {'9681643615': ('La nueva mente del emperador', 'Roger Penrose', '2002'), '9586001148': ('Algebra y trigonometria', 'Dennis G. Zill, Jacqueline M. Dewar', '1992'), '958951250X': ('El testamento del paisa', 'Agustin Jaramillo Londoño', '2003'), '978970686544': ('Calculo diferencial e integral', 'James Stewart', '2007'), '9786071507150': ('Precalculo con avances de calculo', 'Dennis G. Zill, Jacqueline M. Dewar', '2012'), '9789504926979': ('Caballo de guerra', 'Michael Morpurgo', '2012'), '9702604486': ('Introduccion al analisis de circuitos', 'Robert L. Boylestad', '2011')})
+
+
+def getIDsPorAutor(autor, dataBase):
+    '''
+        (str,dict) -> (list)
+        Sinopsis:
+            Función que devuelve una lista con los IDs de los libros del autor pasado como argumrento contenidos en el diccionario asociado al inventario de la biblioteca.
+        Entradas:
+            - autor: str, Nombre del autor
+            - dataBase: dict, Diccionario que contiene la base de datos asociada al inventario de la biblioteca.
+        Retorna:
+            IDs de los libros que tienen por autor el valor asignado al parámetro de la función autor.
+    '''
+    IDs = []
+    for ID, book in dataBase.items():
+        escritores = book[1].split(',')
+        for escritor in escritores:
+            if escritor.lower().find(autor.lower().strip()) != -1:
+                IDs.append(ID)
+    return tuple(IDs)
+
+
+def getIDsPorTitulo(titulo, dataBase):
+    '''
+    (str,dict) -> (list)
+    Sinopsis:
+        Función que devuelve los IDs de los libros contenidos en el diccionario dataBase
+        y cuyo titulo es pasado como argumento al parametro título.
+    Entradas:
+        - autor: str, Nombre del titulo
+        - dataBase: dict, Diccionario que contiene la base de datos asociada al inventario de la biblioteca.
+    Retorna:
+        Lista de los ISBN de los libros que tienen por título el valor asignado al parámetro título de la función.
+    '''
+    IDs = []
+    for ID, Book in dataBase.items():
+        if Book[0].lower().find(titulo.lower().strip()) != -1:
+            IDs.append(ID)
+    return tuple(IDs)
+
+
+def imprimirMaterial(ISBNs, DB):
+    '''
+    (list,dict) -> (None)
+    Sinopsis:
+        Función que muestra una tabla con la informacion de los libros cuya ISBN se paso como argumento.
+    Entradas:
+        - ISBN: Lista que contiente las ISBN de los libros que se desean desplegar.
+        - DB: Diccionario que contiene la base de datos asociada al inventario de la biblioteca.
+    Retorna:
+        Esta funcion no retorna nada.
+    '''
+    for ISBN in ISBNs:
+        base = DB[ISBN]
+        print('ISBN: {}, Titulo: {}, Autor: {}, Año: {}'.format(ISBN, base[0], base[1], base[2]))
+
+def testimprimirMaterial():
+    Libros = {
+                '9702604486': [' Introduccion al analisis de circuitos', 'Robert L. Boylestad', '2011'], 
+                '978970686544': ['Calculo diferencial e integral', 'James Stewart', '2007'], 
+                '9586001148': ['Algebra y trigonometria', 'Dennis G. Zill, Jacqueline M. Dewar', '1992'], 
+                '9789504926979': ['Caballo de guerra', 'Michael Morpurgo', '2012'], 
+                '9786071507150': ['Precalculo con avances de calculo', 'Dennis G. Zill, Jacqueline M. Dewar', '2012']
+             }
+
+    print("Busqueda 1...")
+    ID = ['978970686544','9786071507150']
+    imprimirMaterial(ID,Libros)
+    print("\nBusqueda 2...")
+    imprimirMaterial(['9586001148'],Libros)
+    print("\nBusqueda 3...")
+    imprimirMaterial([],Libros)
+testimprimirMaterial()
