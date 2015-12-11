@@ -81,20 +81,19 @@ def libroDisponible(ISBN, DB):
     '''
     return ISBN in DB
 
-def testlibroDisponible():
-    Libros = {
-                '9702604486': [' Introduccion al analisis de circuitos', 'Robert L. Boylestad', '2011'], 
-                '978970686544': ['Calculo diferencial e integral', 'James Stewart', '2007'], 
-                '9586001148': ['Algebra y trigonometria', 'Dennis G. Zill, Jacqueline M. Dewar', '1992'], 
-                '9789504926979': ['Caballo de guerra', 'Michael Morpurgo', '2012'], 
-                '9786071507150': ['Precalculo con avances de calculo', 'Dennis G. Zill, Jacqueline M. Dewar', '2012']
-             }
 
-
-    print("Test 1. Buscando material que esta disponible...")
-    print(libroDisponible('9786071507150',Libros))
-    print("Test 2. Buscando material que no esta disponible...")
-    print(libroDisponible('10092',Libros))
-
-# Test de la funcion
-testlibroDisponible() # Comente esta linea una vez verifique que la salida del programa coincide con la salida esperada a continuacion
+def agregarLibro(ISBN, titulo, autores, year, DB):
+    '''
+        (str, str, str, str, dict) -> (None)
+        Sinopsis:
+        Función que agrega un nuevo libro (item) al diccionario en el cual se encuentra     almacenado el inventario
+            de libros de la biblioteca.
+        Entradas:
+        - ISBN (str): ID del libro que  se desea almacenar.
+        - titulo (str): Cadena que contiene el título del libro     que se desea almacenar.
+        - autores (str): Cadena que contiene cada uno de los    autores separados por coma.
+        - DB (dic): Estructura que tiene almacenada la información de   los libros de la biblioteca.
+        Retorna:
+            Ninguno
+    '''
+    DB[ISBN] = (titulo, autores, year)
