@@ -97,3 +97,17 @@ def agregarLibro(ISBN, titulo, autores, year, DB):
             Ninguno
     '''
     DB[ISBN] = (titulo, autores, year)
+
+
+def eliminarLibro(ISBN, DB):
+    '''
+    (str, dict) -> (None)
+    Sinopsis:
+        Función que el libro cuya ID es idB del diccionario asociado al inventario de libros de la biblioteca.
+    Entradas:
+        - ISBN (str): ISBN del libro que se desea eliminar.
+        - DB (dic): Estructura que tiene almacenada la información de los libros de la biblioteca.
+    Retorna:
+        Ninguno
+    '''
+    del DB[ISBN]
