@@ -96,24 +96,8 @@ def imprimirMaterial(ISBNs, DB):
     Retorna:
         Esta funcion no retorna nada.
     '''
+    print('ISBN       Titulo           Autor    ')
     for ISBN in ISBNs:
         base = DB[ISBN]
+
         print('ISBN: {}, Titulo: {}, Autor: {}, Año: {}'.format(ISBN, base[0], base[1], base[2]))
-
-def testimprimirMaterial():
-    Libros = {
-                '9702604486': [' Introduccion al analisis de circuitos', 'Robert L. Boylestad', '2011'], 
-                '978970686544': ['Calculo diferencial e integral', 'James Stewart', '2007'], 
-                '9586001148': ['Algebra y trigonometria', 'Dennis G. Zill, Jacqueline M. Dewar', '1992'], 
-                '9789504926979': ['Caballo de guerra', 'Michael Morpurgo', '2012'], 
-                '9786071507150': ['Precalculo con avances de calculo', 'Dennis G. Zill, Jacqueline M. Dewar', '2012']
-             }
-
-    print("Busqueda 1...")
-    ID = ['978970686544','9786071507150']
-    imprimirMaterial(ID,Libros)
-    print("\nBusqueda 2...")
-    imprimirMaterial(['9586001148'],Libros)
-    print("\nBusqueda 3...")
-    imprimirMaterial([],Libros)
-testimprimirMaterial()
