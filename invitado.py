@@ -27,12 +27,12 @@ def guardarLibros(filename, dic):
         (str, dict) -> None
             Sinopsis:
                 Almacena los ítems del diccionario dic en el archivo de texto de nombre filename siguiendo el formato para la base de datos tal y como se muestra a continuacion:
-                ------------------------------------------------------------------------------------------    
+                -------------------------------------------------------------------------
             ISBN - TITULO - AUTORES - AÑO
             ID1 -  Titulo libro 1 - Autores libro 1 (separados por coma) - Año de publicacion libro 1
             ID2 -  Titulo libro 2 - Autores libro 2 (separados por coma) - Año de publicacion libro 2
             IDN -  Titulo libro N - Autores libro N (separados por coma) - Año de publicacion libro N
-        ------------------------------------------------------------------------------------------   
+        --------------------------------------------------------------------------------
         Entradas:
             - filename: string, Nombre del archivo de texto en el que se almacenará el inventario.
             - dic: dict, Diccionario que contiene la estructura de datos asociada al inventario de la biblioteca
@@ -96,8 +96,19 @@ def imprimirMaterial(ISBNs, DB):
     Retorna:
         Esta funcion no retorna nada.
     '''
-    print('ISBN       Titulo           Autor    ')
+    lista = []
+    values = [0, 0, 0, 0]
     for ISBN in ISBNs:
         base = DB[ISBN]
-
-        print('ISBN: {}, Titulo: {}, Autor: {}, Año: {}'.format(ISBN, base[0], base[1], base[2]))
+        for value, x in zip(values, range(3)):
+            lbase = len(base[x])
+            if value < lbase:
+                values[x] = lbase
+        if values[3] < len(ISBN):
+            values[3] = len(ISBN)
+        lista.append((base[0], base[1], base[2], ISBN))
+    print('ISBN{}\tTitulo{}\tAutor{}\tAño'.format(' '*(values[3]-4), ' '*(values[0]-6), ' '*(values[1]-5)))
+    for bo in lista:
+        espacios = (' '*(values[0]-len(bo[0])), ' ' * (values[1]-len(bo[1])), ' ' * (values[2]-len(bo[2])), ' ' * (values[3]-len(bo[3])))
+        print('{}\t{}\t{}\t{}'.format(bo[3] + espacios[3], bo[0] + espacios[0], bo[1] + espacios[1], bo[2]))
+    
