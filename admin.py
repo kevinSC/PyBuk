@@ -1,3 +1,25 @@
+def cargarArchivo(filename):
+    '''
+        (str) -> (dict)
+        Sinopsis:
+            Carga un archivo de texto y lo lleva a un diccionario. Para el caso el elemento
+            de la primera columna siempre será la clave (key) del diccionario, mientras que los demás elementos
+            formarán una lista la cual será el valor asociado.
+        Entradas:
+            - filename: string, Nombre (con ruta completa de ser necesario) del archivo de texto a leer
+        Retorna:
+            Diccionario (dict) que contiene cada uno de los ítems del archivo leído.
+    '''
+    DB = {}
+    data = open(filename, 'r')
+    for line in data:
+        user = line.split(' - ')
+        for x, y in zip(user, range(len(user))):
+            user[y] = x.strip()
+        DB[user[0]] = (user[1], user[2], user[3], user[4])
+    data.close()
+    del DB['ID']
+    return DB
 def verificarUsuario(login, password, usuarios):
     '''
         (str,str,dict) -> (int)
@@ -96,7 +118,7 @@ def agregarLibro(ISBN, titulo, autores, year, DB):
         Retorna:
             Ninguno
     '''
-    DB[ISBN] = (titulo, autores, year)
+    DB[ISBN] = (titulo.strip(), autores.strip(), year.strip())
 
 
 def eliminarLibro(ISBN, DB):
