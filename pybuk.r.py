@@ -80,16 +80,16 @@ else:
 		except ValueError:
 			print('ingrese 1 o 2:')
 	if option2 == 1:
-		ahorcado.showMenu({1: 'Buscar libros', 2: 'Borrar Libro', 3: 'agregar Libro', 4: 'ver biblioteca'})
+		ahorcado.showMenu({1: 'Buscar libros', 2: 'Borrar Libro', 3: 'agregar Libro', 4: 'ver biblioteca', 5: 'verificar libro'})
 		while True:
 			try:
 				libroOption = int(input())
-				if libroOption < 1 or libroOption > 4:
-					print('ingrese 1, 2, 3 o4:')
+				if libroOption < 1 or libroOption > 5:
+					print('ingrese 1, 2, 3, 4 o 5:')
 					continue
 				break
 			except ValueError:
-				print('ingrese 1, 2, 3 o 4:')
+				print('ingrese 1, 2, 3, 4 o 5:')
 		if libroOption == 1:
 			ahorcado.showMenu(menuBook)
 			while True:
@@ -132,3 +132,48 @@ else:
 			nbook = input('por favor ingrese el nuevo libro.\nen el siguiente orden separado por comas:\nISBN, Titulo, Autores, Año').split(',')
 			isbn, titulot, autorest, yeart = nbook
 			admin.agregarLibro(isbn, titulot, autorest, yeart, DB)
+		elif libroOption == 4:
+			os.system('less libros.txt')
+		else:
+			mensaje = 'si existe' if admin.libroDisponible(input('ingese el ISBN del Libro:\n'), DB) else 'no existe'
+			print(mensaje)
+	else:
+		ahorcado.showMenu({1: 'verificar ususario', 2: 'Eliminar ususario', 3: 'Agregar ususario', 4: '\n  Cambiar Login', 5: 'Cambiar contraseña', 6: 'Ver usuario'})
+		while True:
+			try:
+				k = int(input())
+				if k < 1 or k > 6:
+					print('ingrese 1, 2, 3,4 ,5  o 6:')
+					continue
+				break
+			except ValueError:
+					print('ingrese 1, 2, 3,4 ,5  o 6:')
+		if k == 1:
+			while True:
+				strin = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nlogin, password:\n').split(',')
+				login, password = strin
+				existe = admin.verificarUsuario(login, password, DA)
+				if existe == None:
+					print('el usuario no existe')
+					continue
+				else:
+					print('el usuario le corresponde el ID:', existe)
+					break
+		elif k == 2:
+			while True:
+				try:
+					identificacion = input('por favor ingresa el ID del usuario a eliminar:\n')
+					admin.eliminarUser(identificacion, DA)
+					break
+				except KeyError:
+					print('por favor ingresa un ID valido')
+		elif k == 3:
+			strin2 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Nombres, Apellidos, Login, Password:\n').split(',')
+			ID, Nombres, Apellidos, Login, Password = strin2
+			admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
+		elif k == 4:
+			pass
+		elif k == 5:
+			pass
+		else:
+			pass

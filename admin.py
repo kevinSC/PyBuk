@@ -20,6 +20,7 @@ def cargarArchivo(filename):
     data.close()
     del DB['ID']
     return DB
+
 def verificarUsuario(login, password, usuarios):
     '''
         (str,str,dict) -> (int)
@@ -121,6 +122,10 @@ def agregarLibro(ISBN, titulo, autores, year, DB):
     DB[ISBN] = (titulo.strip(), autores.strip(), year.strip())
 
 
+def agregarUser(ID, Nombres, Apellidos, Login, password, DB):
+    DB[ID] = (Nombres, Apellidos, Login, password)
+
+
 def eliminarLibro(ISBN, DB):
     '''
         (str, dict) -> (None)
@@ -133,3 +138,8 @@ def eliminarLibro(ISBN, DB):
             Ninguno
     '''
     del DB[ISBN]
+
+
+
+def eliminarUser(ID, DB):
+    del DB[ID]
