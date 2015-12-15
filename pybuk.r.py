@@ -172,8 +172,14 @@ else:
 			ID, Nombres, Apellidos, Login, Password = strin2
 			admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
 		elif k == 4:
-			pass
+			strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login:\n').split(',')
+			IDs, Logins = strin3
+			admin.cambiarLogin(IDs, Logins, DA)
 		elif k == 5:
-			pass
+			strin4 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, contraseña:\n').split(',')
+			IDd, contraseñad = strin4
+			admin.cambiarPassword(IDd, contraseñad, DA)
 		else:
-			pass
+			IDw = input('por favor ingrese el ID del usuario')
+			admin.verDatosUsuario(IDw, DA)
+invitado.guardarLibros('libros.txt', DB)
