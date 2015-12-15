@@ -16,7 +16,7 @@ def cargarArchivo(filename):
         user = line.split(' - ')
         for x, y in zip(user, range(len(user))):
             user[y] = x.strip()
-        DB[user[0]] = (user[1], user[2], user[3], user[4])
+        DB[user[0]] = (user[1], user[2], user[3])
     data.close()
     del DB['ID']
     return DB
@@ -150,4 +150,3 @@ def guardarUsers(filename, dic):
     for key, value in dic.items():
         data.write(key + ' - ' + value[0] + ' - ' + value[1] + ' - ' + value[2] + ' - ' + value[3] + '\n')
     data.close()
-

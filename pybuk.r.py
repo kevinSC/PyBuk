@@ -2,7 +2,11 @@ import ahorcado
 import invitado
 import admin
 import os
+<<<<<<< HEAD
 DA = admin.cargarArchivo('administradores.txt')
+=======
+from Crypto.Hash import SHA256
+>>>>>>> backend2
 DB = invitado.cargarArchivo('libros.txt')
 menuBook = {1: 'Codigo ISBN', 2: 'Titulo', 3: 'Autor'}
 #ahorcado.printIntro('movie.txt')
@@ -63,7 +67,6 @@ else:
 						break
 					else:
 						intentos += 1
-
 				findUser = True
 				break
 		if findUser and findPassword:
@@ -80,7 +83,7 @@ else:
 		except ValueError:
 			print('ingrese 1 o 2:')
 	if option2 == 1:
-		ahorcado.showMenu({1: 'Buscar libros', 2: 'Borrar Libro', 3: 'agregar Libro', 4: 'ver biblioteca', 5: 'verificar libro'})
+		ahorcado.showMenu({1: 'Buscar Libros', 2: 'Borrar Libro', 3: 'Agregar Libro', 4: 'ver biblioteca', 5: 'Verificar Libro'})
 		while True:
 			try:
 				libroOption = int(input())
