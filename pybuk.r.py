@@ -2,6 +2,7 @@ import ahorcado
 import invitado
 import admin
 import os
+DA = admin.cargarArchivo('administradores.txt')
 DB = invitado.cargarArchivo('libros.txt')
 menuBook = {1: 'Codigo ISBN', 2: 'Titulo', 3: 'Autor'}
 #ahorcado.printIntro('movie.txt')
@@ -47,7 +48,6 @@ if option == 1:
 		Autor = input('ingrese el nombre del Autor:\n').strip()
 		invitado.imprimirMaterial(invitado.getIDsPorAutor(Autor, DB), DB)
 else:
-	DA = admin.cargarArchivo('administradores.txt')
 	os.system('clear')
 	while True:
 		findPassword = False
@@ -183,3 +183,4 @@ else:
 			IDw = input('por favor ingrese el ID del usuario')
 			admin.verDatosUsuario(IDw, DA)
 invitado.guardarLibros('libros.txt', DB)
+admin.guardarUsers('administradores.txt', DA)

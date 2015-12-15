@@ -140,6 +140,13 @@ def eliminarLibro(ISBN, DB):
     del DB[ISBN]
 
 
-
 def eliminarUser(ID, DB):
     del DB[ID]
+
+
+def guardarUsers(filename, dic):
+    data = open(filename, 'w')
+    data.write('ID - NOMBRES - APELLIDOS - LOGIN - PASSWORD\n')
+    for key, value in dic.items():
+        data.write(key + ' - ' + value[0] + ' - ' + value[1] + ' - ' + value[2] + ' - ' + value[3] + '\n')
+    data.close()

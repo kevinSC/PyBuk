@@ -111,4 +111,11 @@ def imprimirMaterial(ISBNs, DB):
     for bo in lista:
         espacios = (' '*(values[0]-len(bo[0])), ' ' * (values[1]-len(bo[1])), ' ' * (values[2]-len(bo[2])), ' ' * (values[3]-len(bo[3])))
         print('{}\t{}\t{}\t{}'.format(bo[3] + espacios[3], bo[0] + espacios[0], bo[1] + espacios[1], bo[2]))
-    
+
+
+def guardarUsers(filename, dic):
+    data = open(filename, 'w')
+    data.write('ID - NOMBRES - APELLIDOS - LOGIN - PASSWORD\n')
+    for key, value in dic.items():
+        data.write(key + ' - ' + value[0] + ' - ' + value[1] + ' - ' + value[2] + ' - ' + value[3] + '\n')
+    data.close()
