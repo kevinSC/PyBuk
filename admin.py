@@ -150,3 +150,4 @@ def guardarUsers(filename, dic):
     for key, value in dic.items():
         data.write(key + ' - ' + value[0] + ' - ' + value[1] + ' - ' + value[2] + ' - ' + value[3] + '\n')
     data.close()
+
