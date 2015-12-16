@@ -1,3 +1,8 @@
 # PyBuk
-Proyecto en consola que emula una red de bibliotecas
-Kevin Cufiño Robayo
+<p>
+	Proyecto en consola que emula una red de bibliotecas
+</p>
+***
+>Kevin Cufiño Robayo
+>Vanessa Mallama Pascmal
+***
