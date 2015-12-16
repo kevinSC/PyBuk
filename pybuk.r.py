@@ -134,8 +134,12 @@ while True:
 						except KeyError:
 							print('Este libro no existe')
 				elif libroOption == 3:
-					nbook = input('por favor ingrese el nuevo libro.\nen el siguiente orden separado por comas:\nISBN, Titulo, Autores, Año').split(',')
+					nbook = input('por favor ingrese el nuevo libro.\nen el siguiente orden separado por comas:\nISBN, Titulo, Autores, Año:\n').split(',')
 					isbn, titulot, autorest, yeart = nbook
+					while isbn in DB:
+						print('El libro ya existe\n')
+						nbook = input('por favor ingrese el nuevo libro.\nen el siguiente orden separado por comas:\nISBN, Titulo, Autores, Año:\n').split(',')
+						isbn, titulot, autorest, yeart = nbook
 					admin.agregarLibro(isbn, titulot, autorest, yeart, DB)
 				elif libroOption == 4:
 					os.system('less libros.txt')
@@ -176,6 +180,10 @@ while True:
 					elif k == 3:
 						strin2 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Nombres, Apellidos, Login, Password:\n').split(',')
 						ID, Nombres, Apellidos, Login, Password = strin2
+						while ID in DA:
+							print('Este usuario ya existe')
+							strin2 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Nombres, Apellidos, Login, Password:\n').split(',')
+							ID, Nombres, Apellidos, Login, Password = strin2
 						admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
 					elif k == 4:
 						strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login nuevo:\n').split(',')

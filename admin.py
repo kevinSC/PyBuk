@@ -123,11 +123,13 @@ def agregarLibro(ISBN, titulo, autores, year, DB):
         Retorna:
             Ninguno
     '''
-    DB[ISBN.strip()] = (titulo.strip(), autores.strip(), year.strip())
+    if not ISBN in DB:
+        DB[ISBN.strip()] = (titulo.strip(), autores.strip(), year.strip())
 
 
 def agregarUser(ID, Nombres, Apellidos, Login, password, DB):
-    DB[ID.strip()] = (Nombres.strip(), Apellidos.strip(), Login.strip(), crypting(password.strip()))
+    if not ID in DB:
+        DB[ID.strip()] = (Nombres.strip(), Apellidos.strip(), Login.strip(), crypting(password.strip()))
 
 
 def eliminarLibro(ISBN, DB):
