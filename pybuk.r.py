@@ -55,7 +55,6 @@ while True:
 			else:
 				break
 	elif option == 2:
-		os.system('clear')
 		while True:
 			findPassword = False
 			findUser = False
@@ -75,7 +74,6 @@ while True:
 			if findUser and findPassword:
 				break
 		while True:
-			os.system('clear')
 			ahorcado.showMenu({1: 'acceder a biblioteca', 2: 'Configuraciones de ususarios', 3:'regresar'})
 			while True:
 				try:
@@ -145,50 +143,53 @@ while True:
 					mensaje = 'si existe' if admin.libroDisponible(input('ingese el ISBN del Libro:\n'), DB) else 'no existe'
 					print(mensaje)
 			elif option2 == 2:
-				ahorcado.showMenu({1: 'verificar ususario', 2: 'Eliminar ususario', 3: 'Agregar ususario', 4: '\n  Cambiar Login', 5: 'Cambiar contraseña', 6: 'Ver usuario'})
 				while True:
-					try:
-						k = int(input())
-						if k < 1 or k > 6:
-							print('ingrese 1, 2, 3,4 ,5  o 6:')
-							continue
-						break
-					except ValueError:
-							print('ingrese 1, 2, 3,4 ,5  o 6:')
-				if k == 1:
-					while True:
-						strin = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nlogin, password:\n').split(',')
-						login, password = strin
-						existe = admin.verificarUsuario(login, password, DA)
-						if existe == None:
-							print('el usuario no existe')
-							continue
-						else:
-							print('el usuario le corresponde el ID:', existe)
-							break
-				elif k == 2:
+					ahorcado.showMenu({1: 'verificar ususario', 2: 'Eliminar ususario', 3: 'Agregar ususario', 4: '\n  Cambiar Login', 5: 'Cambiar contraseña', 6: 'Ver usuario', 7: 'regresar'})
 					while True:
 						try:
-							identificacion = input('por favor ingresa el ID del usuario a eliminar:\n')
-							admin.eliminarUser(identificacion, DA)
+							k = int(input())
+							if k < 1 or k > 7:
+								print('ingrese 1, 2, 3,4 ,5, 6 o 7:')
+								continue
 							break
-						except KeyError:
-							print('por favor ingresa un ID valido')
-				elif k == 3:
-					strin2 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Nombres, Apellidos, Login, Password:\n').split(',')
-					ID, Nombres, Apellidos, Login, Password = strin2
-					admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
-				elif k == 4:
-					strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login nuevo:\n').split(',')
-					IDs, Logins = strin3
-					admin.cambiarLogin(IDs, Logins, DA)
-				elif k == 5:
-					strin4 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, contraseña nueva:\n').split(',')
-					IDd, contraseñad = strin4
-					admin.cambiarPassword(IDd, contraseñad, DA)
-				else:
-					IDw = input('por favor ingrese el ID del usuario')
-					admin.verDatosUsuario(IDw, DA)
+						except ValueError:
+								print('ingrese 1, 2, 3,4 ,5, 6 o 7:')
+					if k == 1:
+						while True:
+							strin = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nlogin, password:\n').split(',')
+							login, password = strin
+							existe = admin.verificarUsuario(login, password, DA)
+							if existe == None:
+								print('el usuario no existe')
+								continue
+							else:
+								print('el usuario le corresponde el ID:', existe)
+								break
+					elif k == 2:
+						while True:
+							try:
+								identificacion = input('por favor ingresa el ID del usuario a eliminar:\n')
+								admin.eliminarUser(identificacion, DA)
+								break
+							except KeyError:
+								print('por favor ingresa un ID valido')
+					elif k == 3:
+						strin2 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Nombres, Apellidos, Login, Password:\n').split(',')
+						ID, Nombres, Apellidos, Login, Password = strin2
+						admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
+					elif k == 4:
+						strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login nuevo:\n').split(',')
+						IDs, Logins = strin3
+						admin.cambiarLogin(IDs, Logins, DA)
+					elif k == 5:
+						strin4 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, contraseña nueva:\n').split(',')
+						IDd, contraseñad = strin4
+						admin.cambiarPassword(IDd, contraseñad, DA)
+					elif k == 6:
+						IDw = input('por favor ingrese el ID del usuario')
+						admin.verDatosUsuario(IDw, DA)
+					else:
+						break
 			else:
 				break
 	else:
