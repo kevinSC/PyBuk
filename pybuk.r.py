@@ -2,14 +2,12 @@ import ahorcado
 import invitado
 import admin
 import os
-<<<<<<< HEAD
-DA = admin.cargarArchivo('administradores.txt')
-=======
 from Crypto.Hash import SHA256
->>>>>>> backend2
+
+DA = admin.cargarArchivo('administradores.txt')
 DB = invitado.cargarArchivo('libros.txt')
 menuBook = {1: 'Codigo ISBN', 2: 'Titulo', 3: 'Autor'}
-#ahorcado.printIntro('movie.txt')
+ahorcado.printIntro('movie.txt')
 ahorcado.showMenu({1: 'invitado', 2: 'administrador'}, 'por favor ingresa una opcion:')
 while True:
 	try:
@@ -62,7 +60,7 @@ else:
 				intentos = 0
 				while intentos < 3:
 					password = input('por favor ingrese contraseña:')
-					if password == tupla[3]:
+					if admin.compare(password, tupla[3]):
 						findPassword = True
 						break
 					else:
@@ -175,11 +173,11 @@ else:
 			ID, Nombres, Apellidos, Login, Password = strin2
 			admin.agregarUser(ID, Nombres, Apellidos, Login, Password, DA)
 		elif k == 4:
-			strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login:\n').split(',')
+			strin3 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, Login nuevo:\n').split(',')
 			IDs, Logins = strin3
 			admin.cambiarLogin(IDs, Logins, DA)
 		elif k == 5:
-			strin4 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, contraseña:\n').split(',')
+			strin4 = input('por favor ingrese los datos de usuario.\nen el siguiente orden separado por comas:\nID, contraseña nueva:\n').split(',')
 			IDd, contraseñad = strin4
 			admin.cambiarPassword(IDd, contraseñad, DA)
 		else:

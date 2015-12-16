@@ -1,3 +1,2 @@
 ID - NOMBRES - APELLIDOS - LOGIN - PASSWORD
-1 - Juan Carlos - Botero Mora - jcboterom - snf23jn4
-2 - Kevin Steven - Cufiño Robayo - a - a
+1 - Kevin Steven - Cufiño Robayo - KevinSC - $2b$12$O7QsTgY3tg49H9Ny6rlwx.FKiT2Lm7ZcN/tcDJA745B.tGiPTp43q
