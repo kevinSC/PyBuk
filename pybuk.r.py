@@ -2,7 +2,7 @@ import ahorcado
 import invitado
 import admin
 import os
-from Crypto.Hash import SHA256
+
 
 DA = admin.cargarArchivo('administradores.txt')
 DB = invitado.cargarArchivo('libros.txt')
