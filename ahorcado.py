@@ -1,13 +1,15 @@
-def findCharacter(word,letter):
+def findCharacter(word, letter):
     lugar = -1
-    characters=[]
-    place = word[lugar+1:].find(letter)
+    characters = []
+    place = word[lugar + 1:].find(letter)
     while place != -1:
         lugar += place + 1
-        place = (word[lugar+1:].find(letter)) 
+        place = (word[lugar + 1:].find(letter)) 
         characters.append(lugar)
     return tuple(characters)
-def printIntro(movie, stop=False,number=0):
+
+
+def printIntro(movie, stop=False, number=0):
     ''' 
         recibe un archivo .txt con imagenes en codigo ascii y lo despliega
         en la pantalla de la consola mediante diapositivas
@@ -148,23 +150,21 @@ def obtenerParteAdivinada(palabraSecreta, letrasIntentadas):
     	Entradas y salidas:
         	- palabraSecreta: string, palabra que el usuario esta adivinando
         	- letrasIntentadas: list, letras intentadas por el usuario para adivinar la palabra
-        	- returns: string, compuesto de letras y caracteres raya bajo que representan las letras aun no adivinadas
-	
+        	- returns: string, compuesto de letras y caracteres raya bajo que representan las letras aun no adivinadas.
     	Ejemplos de uso:
         	>>> palabraSecreta = 'perro'
         	>>> letrasIntentadas = ['a', 'e', 'i', 'o', 'u', 's', 'p']
         	>>> print obtenerParteAdivinada(palabraSecreta, letrasIntentadas)
         	'p e _ _ o'
-	
         	>>> obtenerParteAdivinada('frodo', [])
         	'_ _ _ _ _'  
     '''
-    if not (letrasIntentadas[0] ==' '):
+    if not (letrasIntentadas[0] == ' '):
         letrasIntentadas.insert(0, ' ')
-    spaces = '_ '*len(palabraSecreta)
+    spaces = '_ ' * len(palabraSecreta)
     for letra in letrasIntentadas:
     	for lugar in findCharacter(palabraSecreta, letra):
-    		spaces = spaces[:2*lugar] + letra +spaces[(2*lugar)+1:]
+    		spaces = spaces[: 2 * lugar] + letra + spaces[( 2 * lugar) + 1:]
     return spaces[:-1]
 
 
@@ -172,14 +172,11 @@ def obtenerLetrasDisponibles(letrasIntentadas):
     '''
     	Firma:
         	(list) -> (string)
-	
     	Sinopsis:
-        	Devuelve las palabras que no se han empleado en los turnos.  
-	
+        	Devuelve las palabras que no se han empleado en los turnos.
     	Entradas y salidas:
         	- letrasIntentadas: list, letras intentadas por el usuario para adivinar la palabra
         	- returns: string, compuesto de letras que no han sido ingresado
-	
     	Ejemplos de uso:
         	>>> letrasIntentadas = ['a', 'b', 'f', 's']
         	>>> print obtenerLetrasDisponibles(letrasIntentadas)

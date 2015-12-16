@@ -1,7 +1,7 @@
 def crypting(password):
     import bcrypt
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-
+'sdfdsfsdf'
 
 def compare(password, hashed):
     import bcrypt
